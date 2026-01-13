@@ -395,14 +395,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-25"><a href="#cb15-25"></a>                                 <span class="at">hjust =</span> <span class="dv">0</span>,  </span>
 <span id="cb15-26"><a href="#cb15-26"></a>                                 <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">10</span>)),</span>
 <span id="cb15-27"><a href="#cb15-27"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span> </span>
-<span id="cb15-28"><a href="#cb15-28"></a>  )</span>
-<span id="cb15-29"><a href="#cb15-29"></a></span>
-<span id="cb15-30"><a href="#cb15-30"></a>plot_shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb15-28"><a href="#cb15-28"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol start="12" type="1">
 <li><p><strong>Explain the values provided to the <code>x</code> aesthetic for both text geoms (<code>shape</code> &amp; <code>total_sightings</code>).</strong></p>
 <ul>
-<li>Answer here</li>
+<li>The first <code>geom_text</code> puts the shape-type labels on the graph’s y axis, 200 units from the x-axis origin. The second <code>geom_text</code> puts the shape’s total sightings on the graph’s y axis, 200 units away from the end of the bar graph.</li>
 </ul></li>
 </ol>
 </section>
@@ -440,7 +438,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="13" type="1">
 <li><p><strong>Consider the order of <code>geom_*()</code> layers in the the above plot (<code>plot_us</code>). Why did the author order the layers in this way?</strong></p>
 <ul>
-<li>Answer here</li>
+<li>The author builds the layers one by one. The <code>geom_rect()</code> sets up the opacity_val alpha information. Then, with the <code>geom_text()</code>, the author builds labels: State’s postal code and observation numbers. The <code>facet_geo()</code> and <code>coord_fix()</code> set up the orientation and organization of the fill and label values in the US shape. Lastly, the <code>labs()</code> and <code>theme()</code> are the finishing touches to make the visualization look cohesive.</li>
 </ul></li>
 </ol>
 </section>
@@ -468,16 +466,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-19"><a href="#cb17-19"></a>  <span class="fu">theme</span>(</span>
 <span id="cb17-20"><a href="#cb17-20"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> bg, <span class="at">color =</span> bg),</span>
 <span id="cb17-21"><a href="#cb17-21"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span></span>
-<span id="cb17-22"><a href="#cb17-22"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb17-22"><a href="#cb17-22"></a>  )</span>
+<span id="cb17-23"><a href="#cb17-23"></a></span>
+<span id="cb17-24"><a href="#cb17-24"></a>plot_day</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol start="14" type="1">
 <li><p><strong>This plot includes one-letter labels for each day of the week. How is this accomplished when week days are written using their three-letter abbreviations (e.g.&nbsp;<code>Mon</code>, <code>Tue</code>) in the <code>df_day_hour</code> data frame?</strong></p>
 <ul>
-<li>Answer here</li>
+<li>In the label parameter, the author told R to just put the first letter of the day column with <code>str_sub(string = wday, start = 1, end = 1)</code></li>
 </ul></li>
 <li><p><strong>What role do the <code>ylim()</code> and <code>xlim()</code> functions play in shaping a ggplot, and how do they change the visual layout of this particular plot? To better understand their effect, try rerunning the code with each of these lines commented out and observe how the plot’s spacing and composition change.</strong></p>
 <ul>
-<li>Answer here</li>
+<li>The <code>ylim()</code> hollows out the cicle graph by creating a min and max to the y axis. The <code>xlim</code> diciates how many “slices” are in the circle graph by creating limits on the x axis.</li>
 </ul></li>
 </ol>
 </section>
@@ -531,12 +531,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-44"><a href="#cb18-44"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb18-45"><a href="#cb18-45"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb18-46"><a href="#cb18-46"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb18-47"><a href="#cb18-47"></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb18-47"><a href="#cb18-47"></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>)</span>
+<span id="cb18-48"><a href="#cb18-48"></a></span>
+<span id="cb18-49"><a href="#cb18-49"></a>quote1</span>
+<span id="cb18-50"><a href="#cb18-50"></a>quote2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol start="16" type="1">
 <li><p><strong>Why do you think the author chose to convert these text elements (and also in <code>plot_ufo</code>, below!) into ggplot objects (you may consider returning to this question after you’ve worked your way through all of the code)?</strong></p>
 <ul>
-<li>Answer here</li>
+<li>The author creates all the images and text elements prior in order to use <code>inset_element()</code> at the final plot. Breaking the visualization into various, smaller parts allows for easier manipulation.</li>
 </ul></li>
 </ol>
 </section>
@@ -582,12 +585,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb20-25"><a href="#cb20-25"></a>                                            <span class="at">hjust =</span> <span class="fl">0.5</span>,</span>
 <span id="cb20-26"><a href="#cb20-26"></a>                                            <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">20</span>)),</span>
 <span id="cb20-27"><a href="#cb20-27"></a>    <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">20</span>, <span class="at">t =</span> <span class="dv">50</span>, <span class="at">r =</span> <span class="dv">50</span>, <span class="at">l =</span> <span class="dv">50</span>)</span>
-<span id="cb20-28"><a href="#cb20-28"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb20-28"><a href="#cb20-28"></a>  )</span>
+<span id="cb20-29"><a href="#cb20-29"></a></span>
+<span id="cb20-30"><a href="#cb20-30"></a>plot_base</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol start="17" type="1">
 <li><p><strong>Why does the author render <code>plot.caption</code> using <code>ggtext::element_markdown()</code>, rather than <code>element_text()</code> (like he does for rendering <code>plot.title</code> and <code>text</code>)?</strong></p>
 <ul>
-<li>Answer here</li>
+<li><code>element_markdown()</code> interprets the text as Markdown/HTLM. Whereas <code>element_text()</code> is just for text formatting. Therefore, <code>element_markdown()</code> is better for more complex formatting, such as bolding, italics, and line breaks.</li>
 </ul></li>
 </ol>
 </section>
@@ -618,11 +623,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="18" type="1">
 <li><p><strong>Explain how <code>plot_final</code> is assembled. What do you think is the most challenging aspect of arranging all components into a single plot?</strong></p>
 <ul>
-<li>Answer here</li>
+<li>The <code>plot_final</code> is constructed by using <code>inset_element()</code> for all perviously created plots and texts. The most challenging aspect was most likely tediously maneuvering all the pieces to fit perfectly with the parameters <code>left = #, right = #, top = # bottom = #</code>. Also, when examining each element, the outputs looked crazy because they were designed for the size and poritions of the <code>plot_final</code>. When first creating the data visualization, it was probably difficult to size all the outputs correctely to look adequant in the final plot.</li>
 </ul></li>
 <li><p><strong>Can you think of one reason the author may have chosen to separate the construction of <code>plot_base</code> and <code>plot_final</code>?</strong></p>
 <ul>
-<li>Answer here</li>
+<li><code>plot_base</code> was used as a foundation for all the other elements to be stacked ontop of in order to create the <code>plot_final</code>.</li>
 </ul></li>
 </ol>
 </section>
@@ -633,7 +638,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="a">
 <li><p><strong>What “perceptual tasks” (from Cleveland &amp; McGill’s heirarchy) must the viewer perform to extract information from these visualizations?</strong></p>
 <ul>
-<li>Answer here</li>
+<li>Shading and saturation for all plots.</li>
 </ul></li>
 <li><p><strong>What task(s) do you think the author wanted to enable or message(s) he wanted to convey with these visualizations (see lecture 2.1, slide 16 for examples)? Be sure to note at least one task / message for each of the three data viz.</strong></p>
 <ul>
@@ -646,19 +651,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol></li>
 <li><p><strong>Describe two elements of this piece that you find visually-pleasing / easy to understand / intuitive. Why?</strong></p>
 <ul>
-<li>Answer here</li>
+<li>I love the first bar graph because it is super clear. The observation numbers are on the graph itself and the proportions between the bars are well done. Additionally, I like the USA sightings per state figure. The figure design is visually appealing and geographically intuitive.</li>
 </ul></li>
 <li><p><strong>Describe two elements of this piece that you feel could be better presented in a different way. Why?</strong></p>
 <ul>
-<li>Answer here</li>
+<li><ol type="1">
+<li>The quotes are confusing. I do not understand the quote themselves, why they are incomplete, and the author’s intent behind them. (2) The plot titles need to be larger as they seem smaller than the quotes. The titles get lost in the infographic.</li>
+</ol></li>
 </ul></li>
 <li><p><strong>Describe two new things that you learned by interpreting / annotating this code. These could be packages, functions, or even code organizational approaches that you hadn’t previously known about or considered.</strong></p>
 <ul>
-<li>Answer here</li>
+<li>As time consuming as this was, I learned tons! Firstly, the data wrangling happening in a couple massive pipes was beautiful, concise, and easy to understand. When looking at the data visualization side, the organization was interesting - making all the elements first, then combining everything at the end. I learned the <code>glue()</code> function, and how to construct personalized themes with <code>theme_void()</code> + <code>theme()</code>.</li>
 </ul></li>
 <li><p><strong>How, if at all, did you use AI tools to help you interpret this code? Describe your approach to using these tools for this assignment. In what ways was consulting the documentation more (or less) helpful than using AI?</strong></p>
 <ul>
-<li>Answer here</li>
+<li>My strategy for this homework was (1) comment the portion of code out and visually see the difference, (2) look up the documentation in R, (3) look up the documentation on Google, and (4) ask AI. I only used AI for the rescaling <code>opacity_val</code> question. After using all the documentation, I was still confused on why the author rescalled 0.3 to 1. Documentation for <code>rescale()</code> used nine words to losely described <em>what</em> the function did. AI could help me help me understand <em>why</em> the author choose 0.3 and 1.</li>
 </ul></li>
 </ol>
 </section>

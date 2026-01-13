@@ -143,7 +143,7 @@ ufo_sightings |>
 
 8.  **What is the purpose of rescaling `opacity_val`? And why rescale from 0.3 to 1?**
 
-    -   `rescale` function rescales the continous variables from total_sightings between 0.3 and 1. IDK why from 0.3 to 1 tho!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+    -   `rescale` function rescales the continous variables from total_sightings between 0.3 and 1. The author choose 0.3 to 1 because they will use it later for alpha values. 
 
 ### iv. Create `df_day_hour`
 
@@ -459,11 +459,13 @@ plot_base <- ggplot() +
     plot.margin = margin(b = 20, t = 50, r = 50, l = 50)
   )
 
+plot_base
+
 ```
 
 17. **Why does the author render `plot.caption` using `ggtext::element_markdown()`, rather than `element_text()` (like he does for rendering `plot.title` and `text`)?**
 
-    -   The author uses this code as the plot base. 
+    -   `element_markdown()` interprets the text as Markdown/HTLM. Whereas `element_text()` is just for text formatting. Therefore, `element_markdown()` is better for more complex formatting, such as bolding, italics, and line breaks. 
 
 ## V. Assemble & save
 
@@ -494,11 +496,11 @@ ggsave(plot = plot_final,
 
 18. **Explain how `plot_final` is assembled. What do you think is the most challenging aspect of arranging all components into a single plot?**
 
-    -   Answer here
+    -   The `plot_final` is constructed by using `inset_element()` for all perviously created plots and texts. The most challenging aspect was most likely tediously maneuvering all the pieces to fit perfectly with the parameters `left = #, right = #, top = # bottom = #`. Also, when examining each element, the outputs looked crazy because they were designed for the size and poritions of the `plot_final`. When first creating the data visualization, it was probably difficult to size all the outputs correctely to look adequant in the final plot. 
 
 19. **Can you think of one reason the author may have chosen to separate the construction of `plot_base` and `plot_final`?**
 
-    -   Answer here
+    -   `plot_base` was used as a foundation for all the other elements to be stacked ontop of in order to create the `plot_final`. 
 
 ## Answer some final reflective questions
 
@@ -506,7 +508,7 @@ ggsave(plot = plot_final,
 
     a.  **What "perceptual tasks" (from Cleveland & McGill's heirarchy) must the viewer perform to extract information from these visualizations?**
 
-        -   Answer here
+        -   Shading and saturation for all plots. 
 
     b.  **What task(s) do you think the author wanted to enable or message(s) he wanted to convey with these visualizations (see lecture 2.1, slide 16 for examples)? Be sure to note at least one task / message for each of the three data viz.**
 
@@ -518,16 +520,16 @@ ggsave(plot = plot_final,
 
 21. **Describe two elements of this piece that you find visually-pleasing / easy to understand / intuitive. Why?**
 
-    -   Answer here
-
+    -   I love the first bar graph because it is super clear. The observation numbers are on the graph itself and the proportions between the bars are well done. Additionally, I like the USA sightings per state figure. The figure design is visually appealing and geographically intuitive.  
+  
 22. **Describe two elements of this piece that you feel could be better presented in a different way. Why?**
 
-    -   Answer here
+    -   (1) The quotes are confusing. I do not understand the quote themselves, why they are incomplete, and the author's intent behind them. (2) The plot titles need to be larger as they seem smaller than the quotes. The titles get lost in the infographic. 
 
 23. **Describe two new things that you learned by interpreting / annotating this code. These could be packages, functions, or even code organizational approaches that you hadn't previously known about or considered.**
 
-    -   Answer here
+    -   As time consuming as this was, I learned tons! Firstly, the data wrangling happening in a couple massive pipes was beautiful, concise, and easy to understand. When looking at the data visualization side, the organization was interesting - making all the elements first, then combining everything at the end. I learned the `glue()` function, and how to construct personalized themes with `theme_void()` + `theme()`. 
 
 24. **How, if at all, did you use AI tools to help you interpret this code? Describe your approach to using these tools for this assignment. In what ways was consulting the documentation more (or less) helpful than using AI?**
 
-    -   Answer here
+    -   My strategy for this homework was (1) comment the portion of code out and visually see the difference, (2) look up the documentation in R, (3) look up the documentation on Google, and (4) ask AI. I only used AI for the  rescaling `opacity_val` question. After using all the documentation, I was still confused on why the author rescalled 0.3 to 1. Documentation for `rescale()` used nine words to losely described *what* the function did. AI could help me help me understand *why* the author choose 0.3 and 1.
