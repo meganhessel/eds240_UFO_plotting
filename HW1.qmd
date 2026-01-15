@@ -5,6 +5,7 @@ description: "Assigned Wed 01/07/2026 | Due Wed 01/14/2026"
 author: "Megan Hessel"
 toc: true
 code-line-numbers: true
+format: pdf
 editor_options: 
   chunk_output_type: console
 ---
@@ -56,11 +57,11 @@ showtext::showtext_auto(enable = TRUE)
 
 1.  **What is the author defining in lines 15-17? Where else in the code do these defined variables show up? What advantage(s) is there to defining these values here, as variables, rather than defining the values directly throughout the script?**
 
-    -   In line 15, *alien* is defined as two colors which are then broke down further: alien color 1 as *bg* and color 2 as *accent*. In later ggplot color parameters, these labels show up again. Defining them here is efficient. When graphing, it is easier to reference a pre-made variable label then re-writting the HEX code over and over again. Also, if we want to change the color later, we will only have to change it in one place.
+    -   *Alien* is defined as two colors which are broken down further: alien color 1 as *bg* and color 2 as *accent*. In later ggplot color parameters, these labels show up again. Defining them here is efficient. When graphing, it is easier to reference a pre-made variable label then re-writting the HEX code over and over again. Also, if the author wants to change the color later, they will only have to change it in one place.
 
 2.  **In your own words, explain what the function, `font_add_google()`, does. What's the difference between the two arguments, `name` and `family`?**
 
-    -   `font_add_google` loads pre-made Google fonts into R. The `name` argument is the font name used in Google Fonts. The `family` argument is what we will call this font later within `geom_text`.
+    -   `font_add_google` loads pre-made Google fonts into R. The `name` argument is the font name used in Google Fonts. The `family` argument is the name the author will reference later within `geom_text`.
 
 ## II. Data wrangling
 
@@ -106,11 +107,11 @@ df_us <- ufo_sightings |>
 
 4.  **Describe what this data frame contains.**
 
-    -   The `df_us` dataframe has each state's total population and UFO signthings information such as total number of sighting, number of sightings per every 10k people, and the sightings in comparison to other states.  
+    -   The `df_us` dataframe has each state's total population and UFO sighting information such as total number of sighting, number of sightings per every 10k people, and the sightings in comparison to other states.  
 
 5.  **What does `opacity_val` represent, and why is it calculated?**
 
-    -   `opacity_val` is a proportion of number of sightings (per every 10k people) for each state comparatively to the highest number of sightings (per every 10k people). This is calculated to have an easy state by state comparison. Just by `opacity_val`, it is easily observe Montanata has the most number of sightings (per every 10k people), followed by VT, WA, WV, ME, and NH. 
+    -   `opacity_val` is a proportion of number of sightings (per every 10k people) for each state comparatively to the highest number of sightings (per every 10k people). This is calculated to have an easy state by state comparison. Just by `opacity_val`, it is easily observe Montanata has the most number of sightings (per every 10k people), followed by VT, WA, WV, ME, and NH. This also sets up opacity levels (used for alpha values) representing number of sightings (per every 10k people) relative to the maximum for each state. 
 
 ### iii. Create `df_shape`
 
@@ -139,11 +140,11 @@ ufo_sightings |>
 
 7.  **What does `fct_reorder` do when it is applied to the `shape` variable? What would have happened if this step was not performed?**
 
-    -   `fct_reorder` sorts the shape column by the number of total sightings. If this step was not performed, the dataframe would not be organized in descending order of total sighting. 
+    -   The `fct_reorder` sorts the shape column by the number of total sightings. If this step was not performed, the dataframe would not be organized in descending order of total sighting. 
 
 8.  **What is the purpose of rescaling `opacity_val`? And why rescale from 0.3 to 1?**
 
-    -   `rescale` function rescales the continous variables from total_sightings between 0.3 and 1. The author choose 0.3 to 1 because they will use it later for alpha values. 
+    -   The `rescale` function rescales the continous variables from total_sightings between 0.3 and 1. The author choose 0.3 to 1 because they will use it later for alpha values. 
 
 ### iv. Create `df_day_hour`
 
@@ -173,7 +174,7 @@ colnames(df_day_hour)
 
 9.  **Describe what this data frame contains.**
 
-    -   For every day of UFO sightning, there is sighting observations (and the poritional opacity_val information) for every hour. 
+    -   For every day of UFO sightning, there is sighting observations (and the proportional opacity_val information) for every hour. 
 
 10. **What is the purpose of the last line inside the `case_when()` statement (`TRUE ~ paste0(hour - 12, "pm")`)?**
 
@@ -195,29 +196,12 @@ space <- glue("<span style='color:{bg};'>. .</span>")
 caption <- glue("{original}{space}{dan_github}
                 <br><br>
                 {new}{space}{link}")
+
 ```
 
 11. **In your own words, what is the difference between `paste0()` and `glue()`? Why did the author use `paste0` to construct `quotes` and `glue` to construct the other text elements?**
 
-    -   `glue()` prints a new class of data - character: glue datatype. Therefore, for assembling quotes, its best to avoid new class and have the text be vectorized with `paste0`. `paste0()` also allows the mechanical, repetitive structure within this code chunk. `glue()` is useful because its easy to read and edit. 
-    
-Simper Example of `paste0()` and `glue()`
-```{r}
-library(glue)
-# Define Variable
-name <- "Megan" 
-
-# Look at code and printed statements of glue vs paste0
-glue <- glue("My name is {name}.") 
-glue
-paste <- paste0("My name is ", name, ".")
-paste
-
-# Check characters 
-class(glue)
-class(paste)
-```
-
+    -   `paste0()` allows for the mechanical, repetitive structure within this code chunk as it creates 3 different strings of texts. `glue()` is useful because its easy to read and edit. Also, `glue()` can add formatting with HTML tags and embedded variables. 
 
 ## IV. Build plots
 
@@ -260,7 +244,7 @@ plot_shape <- ggplot(data = df_shape) +
 
 12. **Explain the values provided to the `x` aesthetic for both text geoms (`shape` & `total_sightings`).**
 
-    -   The first `geom_text` puts the shape-type labels on the graph's y axis, 200 units from the x-axis origin. The second `geom_text` puts the shape's total sightings on the graph's y axis, 200 units away from the end of the bar graph. 
+    -   In the first `geom_text`, the x is 200 which describes the placement of the shape labels on the graph's y axis (200 units from the x-axis origin). In the second `geom_text`, the x is `total_sightings` - 200 which descibes the placement of the shape's total observations on the graph's y axis (200 units away from the end of the bar graph). 
     
 
 ### ii. Build `plot_us`
@@ -342,7 +326,7 @@ plot_day
 
 15. **What role do the `ylim()` and `xlim()` functions play in shaping a ggplot, and how do they change the visual layout of this particular plot? To better understand their effect, try rerunning the code with each of these lines commented out and observe how the plot’s spacing and composition change.**
 
-    -   The `ylim()` hollows out the cicle graph by creating a min and max to the y axis. The `xlim` diciates how many "slices" are in the circle graph by creating limits on the x axis. 
+    -   The `ylim()` hollows out the cicle graph by creating a min and max to the y axis. The `xlim` dictate how many "slices" are in the circle graph by creating limits on the x axis. 
 
 ### iv. Build `quote*`s
 
@@ -508,15 +492,15 @@ ggsave(plot = plot_final,
 
     a.  **What "perceptual tasks" (from Cleveland & McGill's heirarchy) must the viewer perform to extract information from these visualizations?**
 
-        -   Shading and saturation for all plots. 
+        -   The viewer must distinguish between shading and saturation for all the plots, especially in figure 2 and 3. Additionally, in the first figure, the viewer must also differentiate between portions. 
 
     b.  **What task(s) do you think the author wanted to enable or message(s) he wanted to convey with these visualizations (see lecture 2.1, slide 16 for examples)? Be sure to note at least one task / message for each of the three data viz.**
 
-        -   Answer here
+        -   The author is showing the audience the trends of UFO sightings - light shapes, in the early mornings, and in Virgina and Montaina are the most common sighting traits. In the first figure, the author is comparing the reported shapes. In the second figure, the author is showing sightings' spatial pattens. In the third figure, the author is examing the temporal patterns of the UFO reports. 
 
     c.  **Name at least one caveat to the "hierarchy of perceptual tasks" that the author employed to achieve a goal(s) you noted in question b?**
 
-        -   Answer here
+        -   By placing the figures on a black background, it allows the viewers to differienate between the hues/saturations easier. Also the chosen color, has high luminance when the hue is higher, letting the viewer see the trends better. 
 
 21. **Describe two elements of this piece that you find visually-pleasing / easy to understand / intuitive. Why?**
 
@@ -524,7 +508,7 @@ ggsave(plot = plot_final,
   
 22. **Describe two elements of this piece that you feel could be better presented in a different way. Why?**
 
-    -   (1) The quotes are confusing. I do not understand the quote themselves, why they are incomplete, and the author's intent behind them. (2) The plot titles need to be larger as they seem smaller than the quotes. The titles get lost in the infographic. 
+    -   .(1) The quotes are confusing. I do not understand the quote themselves, why they are incomplete, and the author's intent behind them. (2) The plot titles need to be larger as they seem smaller than the quotes. The titles get lost in the infographic. 
 
 23. **Describe two new things that you learned by interpreting / annotating this code. These could be packages, functions, or even code organizational approaches that you hadn't previously known about or considered.**
 

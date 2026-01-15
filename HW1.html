@@ -193,11 +193,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><p><strong>What is the author defining in lines 15-17? Where else in the code do these defined variables show up? What advantage(s) is there to defining these values here, as variables, rather than defining the values directly throughout the script?</strong></p>
 <ul>
-<li>In line 15, <em>alien</em> is defined as two colors which are then broke down further: alien color 1 as <em>bg</em> and color 2 as <em>accent</em>. In later ggplot color parameters, these labels show up again. Defining them here is efficient. When graphing, it is easier to reference a pre-made variable label then re-writting the HEX code over and over again. Also, if we want to change the color later, we will only have to change it in one place.</li>
+<li><em>Alien</em> is defined as two colors which are broken down further: alien color 1 as <em>bg</em> and color 2 as <em>accent</em>. In later ggplot color parameters, these labels show up again. Defining them here is efficient. When graphing, it is easier to reference a pre-made variable label then re-writting the HEX code over and over again. Also, if the author wants to change the color later, they will only have to change it in one place.</li>
 </ul></li>
 <li><p><strong>In your own words, explain what the function, <code>font_add_google()</code>, does. What’s the difference between the two arguments, <code>name</code> and <code>family</code>?</strong></p>
 <ul>
-<li><code>font_add_google</code> loads pre-made Google fonts into R. The <code>name</code> argument is the font name used in Google Fonts. The <code>family</code> argument is what we will call this font later within <code>geom_text</code>.</li>
+<li><code>font_add_google</code> loads pre-made Google fonts into R. The <code>name</code> argument is the font name used in Google Fonts. The <code>family</code> argument is the name the author will reference later within <code>geom_text</code>.</li>
 </ul></li>
 </ol>
 </section>
@@ -241,11 +241,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="4" type="1">
 <li><p><strong>Describe what this data frame contains.</strong></p>
 <ul>
-<li>The <code>df_us</code> dataframe has each state’s total population and UFO signthings information such as total number of sighting, number of sightings per every 10k people, and the sightings in comparison to other states.</li>
+<li>The <code>df_us</code> dataframe has each state’s total population and UFO sighting information such as total number of sighting, number of sightings per every 10k people, and the sightings in comparison to other states.</li>
 </ul></li>
 <li><p><strong>What does <code>opacity_val</code> represent, and why is it calculated?</strong></p>
 <ul>
-<li><code>opacity_val</code> is a proportion of number of sightings (per every 10k people) for each state comparatively to the highest number of sightings (per every 10k people). This is calculated to have an easy state by state comparison. Just by <code>opacity_val</code>, it is easily observe Montanata has the most number of sightings (per every 10k people), followed by VT, WA, WV, ME, and NH.</li>
+<li><code>opacity_val</code> is a proportion of number of sightings (per every 10k people) for each state comparatively to the highest number of sightings (per every 10k people). This is calculated to have an easy state by state comparison. Just by <code>opacity_val</code>, it is easily observe Montanata has the most number of sightings (per every 10k people), followed by VT, WA, WV, ME, and NH. This also sets up opacity levels (used for alpha values) representing number of sightings (per every 10k people) relative to the maximum for each state.</li>
 </ul></li>
 </ol>
 </section>
@@ -273,11 +273,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><p><strong>What does <code>fct_reorder</code> do when it is applied to the <code>shape</code> variable? What would have happened if this step was not performed?</strong></p>
 <ul>
-<li><code>fct_reorder</code> sorts the shape column by the number of total sightings. If this step was not performed, the dataframe would not be organized in descending order of total sighting.</li>
+<li>The <code>fct_reorder</code> sorts the shape column by the number of total sightings. If this step was not performed, the dataframe would not be organized in descending order of total sighting.</li>
 </ul></li>
 <li><p><strong>What is the purpose of rescaling <code>opacity_val</code>? And why rescale from 0.3 to 1?</strong></p>
 <ul>
-<li><code>rescale</code> function rescales the continous variables from total_sightings between 0.3 and 1. IDK why from 0.3 to 1 tho!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</li>
+<li>The <code>rescale</code> function rescales the continous variables from total_sightings between 0.3 and 1. The author choose 0.3 to 1 because they will use it later for alpha values.</li>
 </ul></li>
 </ol>
 </section>
@@ -306,7 +306,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="9" type="1">
 <li><p><strong>Describe what this data frame contains.</strong></p>
 <ul>
-<li>For every day of UFO sightning, there is sighting observations (and the poritional opacity_val information) for every hour.</li>
+<li>For every day of UFO sightning, there is sighting observations (and the proportional opacity_val information) for every hour.</li>
 </ul></li>
 <li><p><strong>What is the purpose of the last line inside the <code>case_when()</code> statement (<code>TRUE ~ paste0(hour - 12, "pm")</code>)?</strong></p>
 <ul>
@@ -332,75 +332,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="11" type="1">
 <li><p><strong>In your own words, what is the difference between <code>paste0()</code> and <code>glue()</code>? Why did the author use <code>paste0</code> to construct <code>quotes</code> and <code>glue</code> to construct the other text elements?</strong></p>
 <ul>
-<li><code>glue()</code> prints a new class of data - character: glue datatype. Therefore, for assembling quotes, its best to avoid new class and have the text be vectorized with <code>paste0</code>. <code>paste0()</code> also allows the mechanical, repetitive structure within this code chunk. <code>glue()</code> is useful because its easy to read and edit.</li>
+<li><code>paste0()</code> allows for the mechanical, repetitive structure within this code chunk as it creates 3 different strings of texts. <code>glue()</code> is useful because its easy to read and edit. Also, <code>glue()</code> can add formatting with HTML tags and embedded variables.</li>
 </ul></li>
 </ol>
-<p>Simper Example of <code>paste0()</code> and <code>glue()</code></p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">library</span>(glue)</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="co"># Define Variable</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>name <span class="ot">&lt;-</span> <span class="st">"Megan"</span> </span>
-<span id="cb7-4"><a href="#cb7-4"></a></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="co"># Look at code and printed statements of glue vs paste0</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a>glue <span class="ot">&lt;-</span> <span class="fu">glue</span>(<span class="st">"My name is {name}."</span>) </span>
-<span id="cb7-7"><a href="#cb7-7"></a>glue</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>My name is Megan.</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>paste <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"My name is "</span>, name, <span class="st">"."</span>)</span>
-<span id="cb9-2"><a href="#cb9-2"></a>paste</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "My name is Megan."</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Check characters </span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">class</span>(glue)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "glue"      "character"</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">class</span>(paste)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "character"</code></pre>
-</div>
-</div>
 </section>
 <section id="iv.-build-plots" class="level2">
 <h2 class="anchored" data-anchor-id="iv.-build-plots">IV. Build plots</h2>
 <section id="i.-build-plot_shape" class="level3">
 <h3 class="anchored" data-anchor-id="i.-build-plot_shape">i. Build <code>plot_shape</code></h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>plot_shape <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_shape) <span class="sc">+</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> total_sightings, <span class="at">y =</span> shape, <span class="at">alpha =</span> opacity_val), </span>
-<span id="cb15-3"><a href="#cb15-3"></a>           <span class="at">fill =</span> accent) <span class="sc">+</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">200</span>, <span class="at">y =</span> shape, <span class="at">label =</span> <span class="fu">str_to_title</span>(shape)), </span>
-<span id="cb15-5"><a href="#cb15-5"></a>            <span class="at">family =</span> <span class="st">"orb"</span>, </span>
-<span id="cb15-6"><a href="#cb15-6"></a>            <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
-<span id="cb15-7"><a href="#cb15-7"></a>            <span class="at">color =</span> bg, </span>
-<span id="cb15-8"><a href="#cb15-8"></a>            <span class="at">size =</span> <span class="dv">14</span>, </span>
-<span id="cb15-9"><a href="#cb15-9"></a>            <span class="at">hjust =</span> <span class="dv">0</span>,</span>
-<span id="cb15-10"><a href="#cb15-10"></a>            <span class="at">nudge_y =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb15-11"><a href="#cb15-11"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> total_sightings<span class="dv">-200</span>, <span class="at">y =</span> shape, <span class="at">label =</span> scales<span class="sc">::</span><span class="fu">comma</span>(total_sightings)),</span>
-<span id="cb15-12"><a href="#cb15-12"></a>            <span class="at">family =</span> <span class="st">"orb"</span>,</span>
-<span id="cb15-13"><a href="#cb15-13"></a>            <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
-<span id="cb15-14"><a href="#cb15-14"></a>            <span class="at">color =</span> bg,</span>
-<span id="cb15-15"><a href="#cb15-15"></a>            <span class="at">size =</span> <span class="dv">10</span>,</span>
-<span id="cb15-16"><a href="#cb15-16"></a>            <span class="at">hjust =</span> <span class="dv">1</span>,</span>
-<span id="cb15-17"><a href="#cb15-17"></a>            <span class="at">nudge_y =</span> <span class="sc">-</span><span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb15-18"><a href="#cb15-18"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>)) <span class="sc">+</span></span>
-<span id="cb15-19"><a href="#cb15-19"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"10 most commonly reported shapes"</span>) <span class="sc">+</span></span>
-<span id="cb15-20"><a href="#cb15-20"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb15-21"><a href="#cb15-21"></a>  <span class="fu">theme</span>(</span>
-<span id="cb15-22"><a href="#cb15-22"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"bar"</span>, </span>
-<span id="cb15-23"><a href="#cb15-23"></a>                                 <span class="at">size =</span> <span class="dv">40</span>, </span>
-<span id="cb15-24"><a href="#cb15-24"></a>                                 <span class="at">color =</span> accent,</span>
-<span id="cb15-25"><a href="#cb15-25"></a>                                 <span class="at">hjust =</span> <span class="dv">0</span>,  </span>
-<span id="cb15-26"><a href="#cb15-26"></a>                                 <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">10</span>)),</span>
-<span id="cb15-27"><a href="#cb15-27"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span> </span>
-<span id="cb15-28"><a href="#cb15-28"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>plot_shape <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_shape) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> total_sightings, <span class="at">y =</span> shape, <span class="at">alpha =</span> opacity_val), </span>
+<span id="cb7-3"><a href="#cb7-3"></a>           <span class="at">fill =</span> accent) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">200</span>, <span class="at">y =</span> shape, <span class="at">label =</span> <span class="fu">str_to_title</span>(shape)), </span>
+<span id="cb7-5"><a href="#cb7-5"></a>            <span class="at">family =</span> <span class="st">"orb"</span>, </span>
+<span id="cb7-6"><a href="#cb7-6"></a>            <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7"></a>            <span class="at">color =</span> bg, </span>
+<span id="cb7-8"><a href="#cb7-8"></a>            <span class="at">size =</span> <span class="dv">14</span>, </span>
+<span id="cb7-9"><a href="#cb7-9"></a>            <span class="at">hjust =</span> <span class="dv">0</span>,</span>
+<span id="cb7-10"><a href="#cb7-10"></a>            <span class="at">nudge_y =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> total_sightings<span class="dv">-200</span>, <span class="at">y =</span> shape, <span class="at">label =</span> scales<span class="sc">::</span><span class="fu">comma</span>(total_sightings)),</span>
+<span id="cb7-12"><a href="#cb7-12"></a>            <span class="at">family =</span> <span class="st">"orb"</span>,</span>
+<span id="cb7-13"><a href="#cb7-13"></a>            <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
+<span id="cb7-14"><a href="#cb7-14"></a>            <span class="at">color =</span> bg,</span>
+<span id="cb7-15"><a href="#cb7-15"></a>            <span class="at">size =</span> <span class="dv">10</span>,</span>
+<span id="cb7-16"><a href="#cb7-16"></a>            <span class="at">hjust =</span> <span class="dv">1</span>,</span>
+<span id="cb7-17"><a href="#cb7-17"></a>            <span class="at">nudge_y =</span> <span class="sc">-</span><span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>)) <span class="sc">+</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"10 most commonly reported shapes"</span>) <span class="sc">+</span></span>
+<span id="cb7-20"><a href="#cb7-20"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb7-21"><a href="#cb7-21"></a>  <span class="fu">theme</span>(</span>
+<span id="cb7-22"><a href="#cb7-22"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"bar"</span>, </span>
+<span id="cb7-23"><a href="#cb7-23"></a>                                 <span class="at">size =</span> <span class="dv">40</span>, </span>
+<span id="cb7-24"><a href="#cb7-24"></a>                                 <span class="at">color =</span> accent,</span>
+<span id="cb7-25"><a href="#cb7-25"></a>                                 <span class="at">hjust =</span> <span class="dv">0</span>,  </span>
+<span id="cb7-26"><a href="#cb7-26"></a>                                 <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">10</span>)),</span>
+<span id="cb7-27"><a href="#cb7-27"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span> </span>
+<span id="cb7-28"><a href="#cb7-28"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol start="12" type="1">
 <li><p><strong>Explain the values provided to the <code>x</code> aesthetic for both text geoms (<code>shape</code> &amp; <code>total_sightings</code>).</strong></p>
 <ul>
-<li>The first <code>geom_text</code> puts the shape-type labels on the graph’s y axis, 200 units from the x-axis origin. The second <code>geom_text</code> puts the shape’s total sightings on the graph’s y axis, 200 units away from the end of the bar graph.</li>
+<li>In the first <code>geom_text</code>, the x is 200 which describes the placement of the shape labels on the graph’s y axis (200 units from the x-axis origin). In the second <code>geom_text</code>, the x is <code>total_sightings</code> - 200 which descibes the placement of the shape’s total observations on the graph’s y axis (200 units away from the end of the bar graph).</li>
 </ul></li>
 </ol>
 </section>
@@ -408,32 +381,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="ii.-build-plot_us">ii. Build <code>plot_us</code></h3>
 <p><strong>HINT:</strong> Consider temporarily commenting out / rearranging the <code>geom_*()</code> layers to better understand how this plot is constructed</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>plot_us <span class="ot">&lt;-</span>  <span class="fu">ggplot</span>(df_us) <span class="sc">+</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">geom_rect</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> <span class="dv">0</span>, <span class="at">xmax =</span> <span class="dv">1</span>, <span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> <span class="dv">1</span>, <span class="at">alpha =</span> opacity_val), </span>
-<span id="cb16-3"><a href="#cb16-3"></a>            <span class="at">fill =</span> accent) <span class="sc">+</span></span>
-<span id="cb16-4"><a href="#cb16-4"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">0.5</span>, <span class="at">y =</span> <span class="fl">0.7</span>, <span class="at">label =</span> state), </span>
-<span id="cb16-5"><a href="#cb16-5"></a>            <span class="at">family =</span> <span class="st">"orb"</span>, </span>
-<span id="cb16-6"><a href="#cb16-6"></a>            <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
-<span id="cb16-7"><a href="#cb16-7"></a>            <span class="at">size =</span> <span class="dv">9</span>, </span>
-<span id="cb16-8"><a href="#cb16-8"></a>            <span class="at">color =</span> bg) <span class="sc">+</span></span>
-<span id="cb16-9"><a href="#cb16-9"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">0.5</span>, <span class="at">y =</span> <span class="fl">0.3</span>, <span class="at">label =</span> <span class="fu">round</span>(num_obs_per10k, <span class="dv">1</span>)), </span>
-<span id="cb16-10"><a href="#cb16-10"></a>            <span class="at">family =</span> <span class="st">"orb"</span>, </span>
-<span id="cb16-11"><a href="#cb16-11"></a>            <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
-<span id="cb16-12"><a href="#cb16-12"></a>            <span class="at">size =</span> <span class="dv">8</span>, </span>
-<span id="cb16-13"><a href="#cb16-13"></a>            <span class="at">color =</span> bg) <span class="sc">+</span>  </span>
-<span id="cb16-14"><a href="#cb16-14"></a>  geofacet<span class="sc">::</span><span class="fu">facet_geo</span>(<span class="sc">~</span>state) <span class="sc">+</span></span>
-<span id="cb16-15"><a href="#cb16-15"></a>  <span class="fu">coord_fixed</span>(<span class="at">ratio =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb16-16"><a href="#cb16-16"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Sightings per 10k population"</span>) <span class="sc">+</span></span>
-<span id="cb16-17"><a href="#cb16-17"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb16-18"><a href="#cb16-18"></a>  <span class="fu">theme</span>(</span>
-<span id="cb16-19"><a href="#cb16-19"></a>    <span class="at">strip.text =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb16-20"><a href="#cb16-20"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"bar"</span>, </span>
-<span id="cb16-21"><a href="#cb16-21"></a>                                 <span class="at">size =</span> <span class="dv">40</span>, </span>
-<span id="cb16-22"><a href="#cb16-22"></a>                                 <span class="at">color =</span> accent,</span>
-<span id="cb16-23"><a href="#cb16-23"></a>                                 <span class="at">hjust =</span> <span class="dv">1</span>,  </span>
-<span id="cb16-24"><a href="#cb16-24"></a>                                 <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">10</span>)),</span>
-<span id="cb16-25"><a href="#cb16-25"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span> </span>
-<span id="cb16-26"><a href="#cb16-26"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>plot_us <span class="ot">&lt;-</span>  <span class="fu">ggplot</span>(df_us) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">geom_rect</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> <span class="dv">0</span>, <span class="at">xmax =</span> <span class="dv">1</span>, <span class="at">ymin =</span> <span class="dv">0</span>, <span class="at">ymax =</span> <span class="dv">1</span>, <span class="at">alpha =</span> opacity_val), </span>
+<span id="cb8-3"><a href="#cb8-3"></a>            <span class="at">fill =</span> accent) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">0.5</span>, <span class="at">y =</span> <span class="fl">0.7</span>, <span class="at">label =</span> state), </span>
+<span id="cb8-5"><a href="#cb8-5"></a>            <span class="at">family =</span> <span class="st">"orb"</span>, </span>
+<span id="cb8-6"><a href="#cb8-6"></a>            <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
+<span id="cb8-7"><a href="#cb8-7"></a>            <span class="at">size =</span> <span class="dv">9</span>, </span>
+<span id="cb8-8"><a href="#cb8-8"></a>            <span class="at">color =</span> bg) <span class="sc">+</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fl">0.5</span>, <span class="at">y =</span> <span class="fl">0.3</span>, <span class="at">label =</span> <span class="fu">round</span>(num_obs_per10k, <span class="dv">1</span>)), </span>
+<span id="cb8-10"><a href="#cb8-10"></a>            <span class="at">family =</span> <span class="st">"orb"</span>, </span>
+<span id="cb8-11"><a href="#cb8-11"></a>            <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
+<span id="cb8-12"><a href="#cb8-12"></a>            <span class="at">size =</span> <span class="dv">8</span>, </span>
+<span id="cb8-13"><a href="#cb8-13"></a>            <span class="at">color =</span> bg) <span class="sc">+</span>  </span>
+<span id="cb8-14"><a href="#cb8-14"></a>  geofacet<span class="sc">::</span><span class="fu">facet_geo</span>(<span class="sc">~</span>state) <span class="sc">+</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a>  <span class="fu">coord_fixed</span>(<span class="at">ratio =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb8-16"><a href="#cb8-16"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Sightings per 10k population"</span>) <span class="sc">+</span></span>
+<span id="cb8-17"><a href="#cb8-17"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb8-18"><a href="#cb8-18"></a>  <span class="fu">theme</span>(</span>
+<span id="cb8-19"><a href="#cb8-19"></a>    <span class="at">strip.text =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb8-20"><a href="#cb8-20"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"bar"</span>, </span>
+<span id="cb8-21"><a href="#cb8-21"></a>                                 <span class="at">size =</span> <span class="dv">40</span>, </span>
+<span id="cb8-22"><a href="#cb8-22"></a>                                 <span class="at">color =</span> accent,</span>
+<span id="cb8-23"><a href="#cb8-23"></a>                                 <span class="at">hjust =</span> <span class="dv">1</span>,  </span>
+<span id="cb8-24"><a href="#cb8-24"></a>                                 <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">10</span>)),</span>
+<span id="cb8-25"><a href="#cb8-25"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span> </span>
+<span id="cb8-26"><a href="#cb8-26"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol start="13" type="1">
 <li><p><strong>Consider the order of <code>geom_*()</code> layers in the the above plot (<code>plot_us</code>). Why did the author order the layers in this way?</strong></p>
@@ -445,30 +418,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="iii.-build-plot_day" class="level3">
 <h3 class="anchored" data-anchor-id="iii.-build-plot_day">iii. Build <code>plot_day</code></h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>plot_day <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_day_hour) <span class="sc">+</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">x =</span> hour, <span class="at">y =</span> day, <span class="at">alpha =</span> opacity_val), </span>
-<span id="cb17-3"><a href="#cb17-3"></a>            <span class="at">fill =</span> accent, </span>
-<span id="cb17-4"><a href="#cb17-4"></a>            <span class="at">height =</span> <span class="fl">0.9</span>, </span>
-<span id="cb17-5"><a href="#cb17-5"></a>            <span class="at">width =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
-<span id="cb17-6"><a href="#cb17-6"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> hour, <span class="at">y =</span> <span class="dv">9</span>, <span class="at">label =</span> hour_lab), </span>
-<span id="cb17-7"><a href="#cb17-7"></a>            <span class="at">family =</span> <span class="st">"orb"</span>,</span>
-<span id="cb17-8"><a href="#cb17-8"></a>            <span class="at">color =</span> accent, </span>
-<span id="cb17-9"><a href="#cb17-9"></a>            <span class="at">size =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
-<span id="cb17-10"><a href="#cb17-10"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> day, <span class="at">label =</span> <span class="fu">str_sub</span>(<span class="at">string =</span> wday, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">end =</span> <span class="dv">1</span>)), </span>
-<span id="cb17-11"><a href="#cb17-11"></a>            <span class="at">family =</span> <span class="st">"orb"</span>, </span>
-<span id="cb17-12"><a href="#cb17-12"></a>            <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
-<span id="cb17-13"><a href="#cb17-13"></a>            <span class="at">color =</span> bg, </span>
-<span id="cb17-14"><a href="#cb17-14"></a>            <span class="at">size =</span> <span class="dv">8</span>) <span class="sc">+</span> </span>
-<span id="cb17-15"><a href="#cb17-15"></a>  <span class="fu">ylim</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">9</span>) <span class="sc">+</span></span>
-<span id="cb17-16"><a href="#cb17-16"></a>  <span class="fu">xlim</span>(<span class="cn">NA</span>, <span class="fl">23.55</span>) <span class="sc">+</span></span>
-<span id="cb17-17"><a href="#cb17-17"></a>  <span class="fu">coord_polar</span>() <span class="sc">+</span></span>
-<span id="cb17-18"><a href="#cb17-18"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb17-19"><a href="#cb17-19"></a>  <span class="fu">theme</span>(</span>
-<span id="cb17-20"><a href="#cb17-20"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> bg, <span class="at">color =</span> bg),</span>
-<span id="cb17-21"><a href="#cb17-21"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span></span>
-<span id="cb17-22"><a href="#cb17-22"></a>  )</span>
-<span id="cb17-23"><a href="#cb17-23"></a></span>
-<span id="cb17-24"><a href="#cb17-24"></a>plot_day</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>plot_day <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_day_hour) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">x =</span> hour, <span class="at">y =</span> day, <span class="at">alpha =</span> opacity_val), </span>
+<span id="cb9-3"><a href="#cb9-3"></a>            <span class="at">fill =</span> accent, </span>
+<span id="cb9-4"><a href="#cb9-4"></a>            <span class="at">height =</span> <span class="fl">0.9</span>, </span>
+<span id="cb9-5"><a href="#cb9-5"></a>            <span class="at">width =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> hour, <span class="at">y =</span> <span class="dv">9</span>, <span class="at">label =</span> hour_lab), </span>
+<span id="cb9-7"><a href="#cb9-7"></a>            <span class="at">family =</span> <span class="st">"orb"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8"></a>            <span class="at">color =</span> accent, </span>
+<span id="cb9-9"><a href="#cb9-9"></a>            <span class="at">size =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> day, <span class="at">label =</span> <span class="fu">str_sub</span>(<span class="at">string =</span> wday, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">end =</span> <span class="dv">1</span>)), </span>
+<span id="cb9-11"><a href="#cb9-11"></a>            <span class="at">family =</span> <span class="st">"orb"</span>, </span>
+<span id="cb9-12"><a href="#cb9-12"></a>            <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
+<span id="cb9-13"><a href="#cb9-13"></a>            <span class="at">color =</span> bg, </span>
+<span id="cb9-14"><a href="#cb9-14"></a>            <span class="at">size =</span> <span class="dv">8</span>) <span class="sc">+</span> </span>
+<span id="cb9-15"><a href="#cb9-15"></a>  <span class="fu">ylim</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">9</span>) <span class="sc">+</span></span>
+<span id="cb9-16"><a href="#cb9-16"></a>  <span class="fu">xlim</span>(<span class="cn">NA</span>, <span class="fl">23.55</span>) <span class="sc">+</span></span>
+<span id="cb9-17"><a href="#cb9-17"></a>  <span class="fu">coord_polar</span>() <span class="sc">+</span></span>
+<span id="cb9-18"><a href="#cb9-18"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb9-19"><a href="#cb9-19"></a>  <span class="fu">theme</span>(</span>
+<span id="cb9-20"><a href="#cb9-20"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> bg, <span class="at">color =</span> bg),</span>
+<span id="cb9-21"><a href="#cb9-21"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span></span>
+<span id="cb9-22"><a href="#cb9-22"></a>  )</span>
+<span id="cb9-23"><a href="#cb9-23"></a></span>
+<span id="cb9-24"><a href="#cb9-24"></a>plot_day</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol start="14" type="1">
 <li><p><strong>This plot includes one-letter labels for each day of the week. How is this accomplished when week days are written using their three-letter abbreviations (e.g.&nbsp;<code>Mon</code>, <code>Tue</code>) in the <code>df_day_hour</code> data frame?</strong></p>
@@ -477,7 +450,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><p><strong>What role do the <code>ylim()</code> and <code>xlim()</code> functions play in shaping a ggplot, and how do they change the visual layout of this particular plot? To better understand their effect, try rerunning the code with each of these lines commented out and observe how the plot’s spacing and composition change.</strong></p>
 <ul>
-<li>The <code>ylim()</code> hollows out the cicle graph by creating a min and max to the y axis. The <code>xlim</code> diciates how many “slices” are in the circle graph by creating limits on the x axis.</li>
+<li>The <code>ylim()</code> hollows out the cicle graph by creating a min and max to the y axis. The <code>xlim</code> dictate how many “slices” are in the circle graph by creating limits on the x axis.</li>
 </ul></li>
 </ol>
 </section>
@@ -485,56 +458,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="iv.-build-quotes">iv. Build <code>quote*</code>s</h3>
 <p>A comment from Dan Oehm’s original code: “A bit clunky but the path of least resistance.”</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>quote1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span><span class="st">"text"</span>, </span>
-<span id="cb18-3"><a href="#cb18-3"></a>           <span class="at">x =</span> <span class="dv">0</span>, </span>
-<span id="cb18-4"><a href="#cb18-4"></a>           <span class="at">y =</span> <span class="dv">1</span>, </span>
-<span id="cb18-5"><a href="#cb18-5"></a>           <span class="at">label =</span> <span class="fu">str_wrap</span>(<span class="at">string =</span> quotes[<span class="dv">1</span>], <span class="at">width =</span> <span class="dv">40</span>),</span>
-<span id="cb18-6"><a href="#cb18-6"></a>           <span class="at">family =</span> <span class="st">"bar"</span>, </span>
-<span id="cb18-7"><a href="#cb18-7"></a>           <span class="at">fontface =</span> <span class="st">"italic"</span>, </span>
-<span id="cb18-8"><a href="#cb18-8"></a>           <span class="at">color =</span> accent, </span>
-<span id="cb18-9"><a href="#cb18-9"></a>           <span class="at">size =</span> <span class="dv">16</span>, </span>
-<span id="cb18-10"><a href="#cb18-10"></a>           <span class="at">hjust =</span> <span class="dv">0</span>, </span>
-<span id="cb18-11"><a href="#cb18-11"></a>           <span class="at">lineheight =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb18-12"><a href="#cb18-12"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb18-13"><a href="#cb18-13"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb18-14"><a href="#cb18-14"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb18-15"><a href="#cb18-15"></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>)</span>
-<span id="cb18-16"><a href="#cb18-16"></a></span>
-<span id="cb18-17"><a href="#cb18-17"></a>quote2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb18-18"><a href="#cb18-18"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, </span>
-<span id="cb18-19"><a href="#cb18-19"></a>           <span class="at">x =</span> <span class="dv">0</span>, </span>
-<span id="cb18-20"><a href="#cb18-20"></a>           <span class="at">y =</span> <span class="dv">1</span>, </span>
-<span id="cb18-21"><a href="#cb18-21"></a>           <span class="at">label =</span> <span class="fu">str_wrap</span>(<span class="at">string =</span> quotes[<span class="dv">2</span>], <span class="at">width =</span> <span class="dv">25</span>),</span>
-<span id="cb18-22"><a href="#cb18-22"></a>           <span class="at">family =</span> <span class="st">"bar"</span>, </span>
-<span id="cb18-23"><a href="#cb18-23"></a>           <span class="at">fontface =</span> <span class="st">"italic"</span>,</span>
-<span id="cb18-24"><a href="#cb18-24"></a>           <span class="at">color =</span> accent, </span>
-<span id="cb18-25"><a href="#cb18-25"></a>           <span class="at">size =</span> <span class="dv">16</span>, </span>
-<span id="cb18-26"><a href="#cb18-26"></a>           <span class="at">hjust =</span> <span class="dv">0</span>,  </span>
-<span id="cb18-27"><a href="#cb18-27"></a>           <span class="at">lineheight =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb18-28"><a href="#cb18-28"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb18-29"><a href="#cb18-29"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb18-30"><a href="#cb18-30"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb18-31"><a href="#cb18-31"></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>)</span>
-<span id="cb18-32"><a href="#cb18-32"></a></span>
-<span id="cb18-33"><a href="#cb18-33"></a>quote3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb18-34"><a href="#cb18-34"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, </span>
-<span id="cb18-35"><a href="#cb18-35"></a>           <span class="at">x =</span> <span class="dv">0</span>, </span>
-<span id="cb18-36"><a href="#cb18-36"></a>           <span class="at">y =</span> <span class="dv">1</span>, </span>
-<span id="cb18-37"><a href="#cb18-37"></a>           <span class="at">label =</span> <span class="fu">str_wrap</span>(<span class="at">string =</span> quotes[<span class="dv">3</span>], <span class="at">width =</span> <span class="dv">25</span>),</span>
-<span id="cb18-38"><a href="#cb18-38"></a>           <span class="at">family =</span> <span class="st">"bar"</span>, </span>
-<span id="cb18-39"><a href="#cb18-39"></a>           <span class="at">fontface =</span> <span class="st">"italic"</span>,</span>
-<span id="cb18-40"><a href="#cb18-40"></a>           <span class="at">color =</span> accent, </span>
-<span id="cb18-41"><a href="#cb18-41"></a>           <span class="at">size =</span> <span class="dv">16</span>, </span>
-<span id="cb18-42"><a href="#cb18-42"></a>           <span class="at">hjust =</span> <span class="dv">0</span>,  </span>
-<span id="cb18-43"><a href="#cb18-43"></a>           <span class="at">lineheight =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb18-44"><a href="#cb18-44"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb18-45"><a href="#cb18-45"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb18-46"><a href="#cb18-46"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb18-47"><a href="#cb18-47"></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>)</span>
-<span id="cb18-48"><a href="#cb18-48"></a></span>
-<span id="cb18-49"><a href="#cb18-49"></a>quote1</span>
-<span id="cb18-50"><a href="#cb18-50"></a>quote2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>quote1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span><span class="st">"text"</span>, </span>
+<span id="cb10-3"><a href="#cb10-3"></a>           <span class="at">x =</span> <span class="dv">0</span>, </span>
+<span id="cb10-4"><a href="#cb10-4"></a>           <span class="at">y =</span> <span class="dv">1</span>, </span>
+<span id="cb10-5"><a href="#cb10-5"></a>           <span class="at">label =</span> <span class="fu">str_wrap</span>(<span class="at">string =</span> quotes[<span class="dv">1</span>], <span class="at">width =</span> <span class="dv">40</span>),</span>
+<span id="cb10-6"><a href="#cb10-6"></a>           <span class="at">family =</span> <span class="st">"bar"</span>, </span>
+<span id="cb10-7"><a href="#cb10-7"></a>           <span class="at">fontface =</span> <span class="st">"italic"</span>, </span>
+<span id="cb10-8"><a href="#cb10-8"></a>           <span class="at">color =</span> accent, </span>
+<span id="cb10-9"><a href="#cb10-9"></a>           <span class="at">size =</span> <span class="dv">16</span>, </span>
+<span id="cb10-10"><a href="#cb10-10"></a>           <span class="at">hjust =</span> <span class="dv">0</span>, </span>
+<span id="cb10-11"><a href="#cb10-11"></a>           <span class="at">lineheight =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb10-12"><a href="#cb10-12"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-13"><a href="#cb10-13"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb10-15"><a href="#cb10-15"></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>)</span>
+<span id="cb10-16"><a href="#cb10-16"></a></span>
+<span id="cb10-17"><a href="#cb10-17"></a>quote2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb10-18"><a href="#cb10-18"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, </span>
+<span id="cb10-19"><a href="#cb10-19"></a>           <span class="at">x =</span> <span class="dv">0</span>, </span>
+<span id="cb10-20"><a href="#cb10-20"></a>           <span class="at">y =</span> <span class="dv">1</span>, </span>
+<span id="cb10-21"><a href="#cb10-21"></a>           <span class="at">label =</span> <span class="fu">str_wrap</span>(<span class="at">string =</span> quotes[<span class="dv">2</span>], <span class="at">width =</span> <span class="dv">25</span>),</span>
+<span id="cb10-22"><a href="#cb10-22"></a>           <span class="at">family =</span> <span class="st">"bar"</span>, </span>
+<span id="cb10-23"><a href="#cb10-23"></a>           <span class="at">fontface =</span> <span class="st">"italic"</span>,</span>
+<span id="cb10-24"><a href="#cb10-24"></a>           <span class="at">color =</span> accent, </span>
+<span id="cb10-25"><a href="#cb10-25"></a>           <span class="at">size =</span> <span class="dv">16</span>, </span>
+<span id="cb10-26"><a href="#cb10-26"></a>           <span class="at">hjust =</span> <span class="dv">0</span>,  </span>
+<span id="cb10-27"><a href="#cb10-27"></a>           <span class="at">lineheight =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb10-28"><a href="#cb10-28"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-29"><a href="#cb10-29"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-30"><a href="#cb10-30"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb10-31"><a href="#cb10-31"></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>)</span>
+<span id="cb10-32"><a href="#cb10-32"></a></span>
+<span id="cb10-33"><a href="#cb10-33"></a>quote3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb10-34"><a href="#cb10-34"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, </span>
+<span id="cb10-35"><a href="#cb10-35"></a>           <span class="at">x =</span> <span class="dv">0</span>, </span>
+<span id="cb10-36"><a href="#cb10-36"></a>           <span class="at">y =</span> <span class="dv">1</span>, </span>
+<span id="cb10-37"><a href="#cb10-37"></a>           <span class="at">label =</span> <span class="fu">str_wrap</span>(<span class="at">string =</span> quotes[<span class="dv">3</span>], <span class="at">width =</span> <span class="dv">25</span>),</span>
+<span id="cb10-38"><a href="#cb10-38"></a>           <span class="at">family =</span> <span class="st">"bar"</span>, </span>
+<span id="cb10-39"><a href="#cb10-39"></a>           <span class="at">fontface =</span> <span class="st">"italic"</span>,</span>
+<span id="cb10-40"><a href="#cb10-40"></a>           <span class="at">color =</span> accent, </span>
+<span id="cb10-41"><a href="#cb10-41"></a>           <span class="at">size =</span> <span class="dv">16</span>, </span>
+<span id="cb10-42"><a href="#cb10-42"></a>           <span class="at">hjust =</span> <span class="dv">0</span>,  </span>
+<span id="cb10-43"><a href="#cb10-43"></a>           <span class="at">lineheight =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb10-44"><a href="#cb10-44"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-45"><a href="#cb10-45"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-46"><a href="#cb10-46"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb10-47"><a href="#cb10-47"></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">"off"</span>)</span>
+<span id="cb10-48"><a href="#cb10-48"></a></span>
+<span id="cb10-49"><a href="#cb10-49"></a>quote1</span>
+<span id="cb10-50"><a href="#cb10-50"></a>quote2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol start="16" type="1">
 <li><p><strong>Why do you think the author chose to convert these text elements (and also in <code>plot_ufo</code>, below!) into ggplot objects (you may consider returning to this question after you’ve worked your way through all of the code)?</strong></p>
@@ -547,47 +520,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="v.-build-plot_ufo">v. Build <code>plot_ufo</code></h3>
 <p><strong>Note:</strong> Grob stands for <strong>gr</strong>aphical <strong>ob</strong>ject. Each visual element rendered in a a ggplot (e.g.&nbsp;lines, points, axes, entire panels, even images) is represented as a grob. Grobs can be manipulated individually to fully customize plots.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>plot_ufo <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">annotation_custom</span>(grid<span class="sc">::</span><span class="fu">rasterGrob</span>(ufo_image)) <span class="sc">+</span></span>
-<span id="cb19-3"><a href="#cb19-3"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb19-4"><a href="#cb19-4"></a>  <span class="fu">theme</span>(</span>
-<span id="cb19-5"><a href="#cb19-5"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> bg, <span class="at">color =</span> bg) </span>
-<span id="cb19-6"><a href="#cb19-6"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>plot_ufo <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">annotation_custom</span>(grid<span class="sc">::</span><span class="fu">rasterGrob</span>(ufo_image)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>  <span class="fu">theme</span>(</span>
+<span id="cb11-5"><a href="#cb11-5"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> bg, <span class="at">color =</span> bg) </span>
+<span id="cb11-6"><a href="#cb11-6"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="vi.-build-plot_base" class="level3">
 <h3 class="anchored" data-anchor-id="vi.-build-plot_base">vi. Build <code>plot_base</code></h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>plot_base <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">labs</span>(</span>
-<span id="cb20-3"><a href="#cb20-3"></a>    <span class="at">title =</span> <span class="st">"UFO Sightings"</span>,</span>
-<span id="cb20-4"><a href="#cb20-4"></a>    <span class="at">subtitle =</span> <span class="st">"Summary of over 88k reported sightings across the US"</span>,</span>
-<span id="cb20-5"><a href="#cb20-5"></a>    <span class="at">caption =</span> caption</span>
-<span id="cb20-6"><a href="#cb20-6"></a>    ) <span class="sc">+</span></span>
-<span id="cb20-7"><a href="#cb20-7"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb20-8"><a href="#cb20-8"></a>  <span class="fu">theme</span>(</span>
-<span id="cb20-9"><a href="#cb20-9"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"orb"</span>, </span>
-<span id="cb20-10"><a href="#cb20-10"></a>                        <span class="at">size =</span> <span class="dv">48</span>, </span>
-<span id="cb20-11"><a href="#cb20-11"></a>                        <span class="at">lineheight =</span> <span class="fl">0.3</span>, </span>
-<span id="cb20-12"><a href="#cb20-12"></a>                        <span class="at">color =</span> accent),</span>
-<span id="cb20-13"><a href="#cb20-13"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> bg, </span>
-<span id="cb20-14"><a href="#cb20-14"></a>                                   <span class="at">color =</span> bg),</span>
-<span id="cb20-15"><a href="#cb20-15"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">128</span>, </span>
-<span id="cb20-16"><a href="#cb20-16"></a>                              <span class="at">face =</span> <span class="st">"bold"</span>, </span>
-<span id="cb20-17"><a href="#cb20-17"></a>                              <span class="at">hjust =</span> <span class="fl">0.5</span>, </span>
-<span id="cb20-18"><a href="#cb20-18"></a>                              <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">10</span>)),</span>
-<span id="cb20-19"><a href="#cb20-19"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"bar"</span>, </span>
-<span id="cb20-20"><a href="#cb20-20"></a>                                 <span class="at">hjust =</span> <span class="fl">0.5</span>, </span>
-<span id="cb20-21"><a href="#cb20-21"></a>                                 <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">20</span>)),</span>
-<span id="cb20-22"><a href="#cb20-22"></a>    <span class="at">plot.caption =</span> ggtext<span class="sc">::</span><span class="fu">element_markdown</span>(<span class="at">family =</span> <span class="st">"bar"</span>,</span>
-<span id="cb20-23"><a href="#cb20-23"></a>                                            <span class="at">face =</span> <span class="st">"italic"</span>,</span>
-<span id="cb20-24"><a href="#cb20-24"></a>                                            <span class="at">color =</span> colorspace<span class="sc">::</span><span class="fu">darken</span>(accent, <span class="fl">0.25</span>),</span>
-<span id="cb20-25"><a href="#cb20-25"></a>                                            <span class="at">hjust =</span> <span class="fl">0.5</span>,</span>
-<span id="cb20-26"><a href="#cb20-26"></a>                                            <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">20</span>)),</span>
-<span id="cb20-27"><a href="#cb20-27"></a>    <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">20</span>, <span class="at">t =</span> <span class="dv">50</span>, <span class="at">r =</span> <span class="dv">50</span>, <span class="at">l =</span> <span class="dv">50</span>)</span>
-<span id="cb20-28"><a href="#cb20-28"></a>  )</span>
-<span id="cb20-29"><a href="#cb20-29"></a></span>
-<span id="cb20-30"><a href="#cb20-30"></a>plot_base</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>plot_base <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">labs</span>(</span>
+<span id="cb12-3"><a href="#cb12-3"></a>    <span class="at">title =</span> <span class="st">"UFO Sightings"</span>,</span>
+<span id="cb12-4"><a href="#cb12-4"></a>    <span class="at">subtitle =</span> <span class="st">"Summary of over 88k reported sightings across the US"</span>,</span>
+<span id="cb12-5"><a href="#cb12-5"></a>    <span class="at">caption =</span> caption</span>
+<span id="cb12-6"><a href="#cb12-6"></a>    ) <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a>  <span class="fu">theme</span>(</span>
+<span id="cb12-9"><a href="#cb12-9"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"orb"</span>, </span>
+<span id="cb12-10"><a href="#cb12-10"></a>                        <span class="at">size =</span> <span class="dv">48</span>, </span>
+<span id="cb12-11"><a href="#cb12-11"></a>                        <span class="at">lineheight =</span> <span class="fl">0.3</span>, </span>
+<span id="cb12-12"><a href="#cb12-12"></a>                        <span class="at">color =</span> accent),</span>
+<span id="cb12-13"><a href="#cb12-13"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> bg, </span>
+<span id="cb12-14"><a href="#cb12-14"></a>                                   <span class="at">color =</span> bg),</span>
+<span id="cb12-15"><a href="#cb12-15"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">128</span>, </span>
+<span id="cb12-16"><a href="#cb12-16"></a>                              <span class="at">face =</span> <span class="st">"bold"</span>, </span>
+<span id="cb12-17"><a href="#cb12-17"></a>                              <span class="at">hjust =</span> <span class="fl">0.5</span>, </span>
+<span id="cb12-18"><a href="#cb12-18"></a>                              <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">10</span>)),</span>
+<span id="cb12-19"><a href="#cb12-19"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"bar"</span>, </span>
+<span id="cb12-20"><a href="#cb12-20"></a>                                 <span class="at">hjust =</span> <span class="fl">0.5</span>, </span>
+<span id="cb12-21"><a href="#cb12-21"></a>                                 <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">20</span>)),</span>
+<span id="cb12-22"><a href="#cb12-22"></a>    <span class="at">plot.caption =</span> ggtext<span class="sc">::</span><span class="fu">element_markdown</span>(<span class="at">family =</span> <span class="st">"bar"</span>,</span>
+<span id="cb12-23"><a href="#cb12-23"></a>                                            <span class="at">face =</span> <span class="st">"italic"</span>,</span>
+<span id="cb12-24"><a href="#cb12-24"></a>                                            <span class="at">color =</span> colorspace<span class="sc">::</span><span class="fu">darken</span>(accent, <span class="fl">0.25</span>),</span>
+<span id="cb12-25"><a href="#cb12-25"></a>                                            <span class="at">hjust =</span> <span class="fl">0.5</span>,</span>
+<span id="cb12-26"><a href="#cb12-26"></a>                                            <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">20</span>)),</span>
+<span id="cb12-27"><a href="#cb12-27"></a>    <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">b =</span> <span class="dv">20</span>, <span class="at">t =</span> <span class="dv">50</span>, <span class="at">r =</span> <span class="dv">50</span>, <span class="at">l =</span> <span class="dv">50</span>)</span>
+<span id="cb12-28"><a href="#cb12-28"></a>  )</span>
+<span id="cb12-29"><a href="#cb12-29"></a></span>
+<span id="cb12-30"><a href="#cb12-30"></a>plot_base</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol start="17" type="1">
 <li><p><strong>Why does the author render <code>plot.caption</code> using <code>ggtext::element_markdown()</code>, rather than <code>element_text()</code> (like he does for rendering <code>plot.title</code> and <code>text</code>)?</strong></p>
@@ -600,25 +573,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="v.-assemble-save" class="level2">
 <h2 class="anchored" data-anchor-id="v.-assemble-save">V. Assemble &amp; save</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>plot_final <span class="ot">&lt;-</span> plot_base <span class="sc">+</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">inset_element</span>(plot_shape, <span class="at">left =</span> <span class="dv">0</span>, <span class="at">right =</span> <span class="dv">1</span>, <span class="at">top =</span> <span class="dv">1</span>, <span class="at">bottom =</span> <span class="fl">0.66</span>) <span class="sc">+</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a>  <span class="fu">inset_element</span>(plot_us, <span class="at">left =</span> <span class="fl">0.42</span>, <span class="at">right =</span> <span class="dv">1</span>, <span class="at">top =</span> <span class="fl">0.74</span>, <span class="at">bottom =</span> <span class="fl">0.33</span>) <span class="sc">+</span></span>
-<span id="cb21-4"><a href="#cb21-4"></a>  <span class="fu">inset_element</span>(plot_day, <span class="at">left =</span> <span class="dv">0</span>, <span class="at">right =</span> <span class="fl">0.66</span>, <span class="at">top =</span> <span class="fl">0.4</span>, <span class="at">bottom =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb21-5"><a href="#cb21-5"></a>  <span class="fu">inset_element</span>(quote1, <span class="at">left =</span> <span class="fl">0.5</span>, <span class="at">right =</span> <span class="dv">1</span>, <span class="at">top =</span> <span class="fl">0.8</span>, <span class="at">bottom =</span> <span class="fl">0.72</span>) <span class="sc">+</span></span>
-<span id="cb21-6"><a href="#cb21-6"></a>  <span class="fu">inset_element</span>(quote2, <span class="at">left =</span> <span class="dv">0</span>, <span class="at">right =</span> <span class="dv">1</span>, <span class="at">top =</span> <span class="fl">0.52</span>, <span class="at">bottom =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb21-7"><a href="#cb21-7"></a>  <span class="fu">inset_element</span>(quote3, <span class="at">left =</span> <span class="fl">0.7</span>, <span class="at">right =</span> <span class="dv">1</span>, <span class="at">top =</span> <span class="fl">0.2</span>, <span class="at">bottom =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb21-8"><a href="#cb21-8"></a>  <span class="fu">inset_element</span>(plot_ufo, <span class="at">left =</span> <span class="fl">0.25</span>, <span class="at">right =</span> <span class="fl">0.41</span>, <span class="at">top =</span> <span class="fl">0.23</span>, <span class="at">bottom =</span> <span class="fl">0.17</span>) <span class="sc">+</span> </span>
-<span id="cb21-9"><a href="#cb21-9"></a>  <span class="fu">plot_annotation</span>(</span>
-<span id="cb21-10"><a href="#cb21-10"></a>    <span class="at">theme =</span> <span class="fu">theme</span>(</span>
-<span id="cb21-11"><a href="#cb21-11"></a>      <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> bg,</span>
-<span id="cb21-12"><a href="#cb21-12"></a>                                     <span class="at">color =</span> bg)</span>
-<span id="cb21-13"><a href="#cb21-13"></a>    )</span>
-<span id="cb21-14"><a href="#cb21-14"></a>  ) </span>
-<span id="cb21-15"><a href="#cb21-15"></a></span>
-<span id="cb21-16"><a href="#cb21-16"></a><span class="fu">ggsave</span>(<span class="at">plot =</span> plot_final, </span>
-<span id="cb21-17"><a href="#cb21-17"></a>       <span class="at">filename =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"outputs"</span>, <span class="st">"ufo_sightings_infographic.png"</span>), </span>
-<span id="cb21-18"><a href="#cb21-18"></a>       <span class="at">height =</span> <span class="dv">16</span>, </span>
-<span id="cb21-19"><a href="#cb21-19"></a>       <span class="at">width =</span> <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>plot_final <span class="ot">&lt;-</span> plot_base <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">inset_element</span>(plot_shape, <span class="at">left =</span> <span class="dv">0</span>, <span class="at">right =</span> <span class="dv">1</span>, <span class="at">top =</span> <span class="dv">1</span>, <span class="at">bottom =</span> <span class="fl">0.66</span>) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">inset_element</span>(plot_us, <span class="at">left =</span> <span class="fl">0.42</span>, <span class="at">right =</span> <span class="dv">1</span>, <span class="at">top =</span> <span class="fl">0.74</span>, <span class="at">bottom =</span> <span class="fl">0.33</span>) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">inset_element</span>(plot_day, <span class="at">left =</span> <span class="dv">0</span>, <span class="at">right =</span> <span class="fl">0.66</span>, <span class="at">top =</span> <span class="fl">0.4</span>, <span class="at">bottom =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>  <span class="fu">inset_element</span>(quote1, <span class="at">left =</span> <span class="fl">0.5</span>, <span class="at">right =</span> <span class="dv">1</span>, <span class="at">top =</span> <span class="fl">0.8</span>, <span class="at">bottom =</span> <span class="fl">0.72</span>) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a>  <span class="fu">inset_element</span>(quote2, <span class="at">left =</span> <span class="dv">0</span>, <span class="at">right =</span> <span class="dv">1</span>, <span class="at">top =</span> <span class="fl">0.52</span>, <span class="at">bottom =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a>  <span class="fu">inset_element</span>(quote3, <span class="at">left =</span> <span class="fl">0.7</span>, <span class="at">right =</span> <span class="dv">1</span>, <span class="at">top =</span> <span class="fl">0.2</span>, <span class="at">bottom =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a>  <span class="fu">inset_element</span>(plot_ufo, <span class="at">left =</span> <span class="fl">0.25</span>, <span class="at">right =</span> <span class="fl">0.41</span>, <span class="at">top =</span> <span class="fl">0.23</span>, <span class="at">bottom =</span> <span class="fl">0.17</span>) <span class="sc">+</span> </span>
+<span id="cb13-9"><a href="#cb13-9"></a>  <span class="fu">plot_annotation</span>(</span>
+<span id="cb13-10"><a href="#cb13-10"></a>    <span class="at">theme =</span> <span class="fu">theme</span>(</span>
+<span id="cb13-11"><a href="#cb13-11"></a>      <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> bg,</span>
+<span id="cb13-12"><a href="#cb13-12"></a>                                     <span class="at">color =</span> bg)</span>
+<span id="cb13-13"><a href="#cb13-13"></a>    )</span>
+<span id="cb13-14"><a href="#cb13-14"></a>  ) </span>
+<span id="cb13-15"><a href="#cb13-15"></a></span>
+<span id="cb13-16"><a href="#cb13-16"></a><span class="fu">ggsave</span>(<span class="at">plot =</span> plot_final, </span>
+<span id="cb13-17"><a href="#cb13-17"></a>       <span class="at">filename =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"outputs"</span>, <span class="st">"ufo_sightings_infographic.png"</span>), </span>
+<span id="cb13-18"><a href="#cb13-18"></a>       <span class="at">height =</span> <span class="dv">16</span>, </span>
+<span id="cb13-19"><a href="#cb13-19"></a>       <span class="at">width =</span> <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol start="18" type="1">
 <li><p><strong>Explain how <code>plot_final</code> is assembled. What do you think is the most challenging aspect of arranging all components into a single plot?</strong></p>
@@ -638,15 +611,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="a">
 <li><p><strong>What “perceptual tasks” (from Cleveland &amp; McGill’s heirarchy) must the viewer perform to extract information from these visualizations?</strong></p>
 <ul>
-<li>Shading and saturation for all plots.</li>
+<li>The viewer must distinguish between shading and saturation for all the plots, especially in figure 2 and 3. Additionally, in the first figure, the viewer must also differentiate between portions.</li>
 </ul></li>
 <li><p><strong>What task(s) do you think the author wanted to enable or message(s) he wanted to convey with these visualizations (see lecture 2.1, slide 16 for examples)? Be sure to note at least one task / message for each of the three data viz.</strong></p>
 <ul>
-<li>Answer here</li>
+<li>The author is showing the audience the trends of UFO sightings - light shapes, in the early mornings, and in Virgina and Montaina are the most common sighting traits. In the first figure, the author is comparing the reported shapes. In the second figure, the author is showing sightings’ spatial pattens. In the third figure, the author is examing the temporal patterns of the UFO reports.</li>
 </ul></li>
 <li><p><strong>Name at least one caveat to the “hierarchy of perceptual tasks” that the author employed to achieve a goal(s) you noted in question b?</strong></p>
 <ul>
-<li>Answer here</li>
+<li>By placing the figures on a black background, it allows the viewers to differienate between the hues/saturations easier. Also the chosen color, has high luminance when the hue is higher, letting the viewer see the trends better.</li>
 </ul></li>
 </ol></li>
 <li><p><strong>Describe two elements of this piece that you find visually-pleasing / easy to understand / intuitive. Why?</strong></p>
@@ -655,9 +628,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><p><strong>Describe two elements of this piece that you feel could be better presented in a different way. Why?</strong></p>
 <ul>
-<li><ol type="1">
-<li>The quotes are confusing. I do not understand the quote themselves, why they are incomplete, and the author’s intent behind them. (2) The plot titles need to be larger as they seem smaller than the quotes. The titles get lost in the infographic.</li>
-</ol></li>
+<li>.(1) The quotes are confusing. I do not understand the quote themselves, why they are incomplete, and the author’s intent behind them. (2) The plot titles need to be larger as they seem smaller than the quotes. The titles get lost in the infographic.</li>
 </ul></li>
 <li><p><strong>Describe two new things that you learned by interpreting / annotating this code. These could be packages, functions, or even code organizational approaches that you hadn’t previously known about or considered.</strong></p>
 <ul>
