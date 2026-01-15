@@ -1,9 +1,10 @@
 # Homework #1 (Interpreting `{ggplot2}` code)
 Author: Megan Hessel 
+
 Date: Jan 14, 2026
 
 ## Purpose 
-This repository contains the `HW1.qmd` template file, necessary for completing HW #1. Here, I interpreted, explained, and reflected on Dan Oehm’s UFO Sightings visualization. Find the full assignment description on the [course website](https://eds-240-data-viz.github.io/course-materials/assignments/HW1.html).
+This repository contains the `HW1.qmd` file. Here, I interpreted, explained, and reflected on Dan Oehm’s UFO Sightings visualization. Find the full assignment description on the [course website](https://eds-240-data-viz.github.io/course-materials/assignments/HW1.html).
 
 ## File Structure 
 
@@ -33,8 +34,8 @@ Located in the root of the repository is the README and main quarto file (called
   
 ```
 
-### Data Access 
-The data is not in this repository. The data is available at https://raw.githubusercontent.com in a TidyTuesday 2023 submission. 
+## Data Access 
+The data is not in this repository. The data is available at https://raw.githubusercontent.com in a 2023 TidyTuesday submission. 
 
 .....
 ## References 
