@@ -37,6 +37,5 @@ Located in the root of the repository is the README and main quarto file (called
 ## Data Access 
 The data is not in this repository. The data is available at https://raw.githubusercontent.com in a 2023 TidyTuesday submission. 
 
-.....
 ## References 
 Oehm, D. (2023). ufo.R [GitHub repository]. https://github.com/doehm/tidytues/blob/main/scripts/2023/week-25-ufo/ufo.R
